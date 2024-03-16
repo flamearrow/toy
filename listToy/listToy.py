@@ -14,6 +14,25 @@ def testReduce(l):
     print(sum)
 
 
+def testStack():
+    stack = list()
+    stack.append(1)
+    stack.append(2)
+    stack.append(3)
+    stack.append(4)
+    while stack:
+        print(stack.pop())
+
+from queue import Queue
+def testQueue():
+    q = Queue()
+    q.put(1)
+    q.put(2)
+    q.put(3)
+    q.put(4)
+    while not q.empty():
+        print(q.get())
+
 if __name__ == '__main__':
     # l = [1, 2, 3, 4, 5]
     # l[1], l[2], l[3] = l[2], l[3], l[1]
@@ -22,5 +41,8 @@ if __name__ == '__main__':
     # filteredL = list(filter(lambda i: i % 2 == 0, l))
     # print(filteredL)
     # testZip()
-    testReduce([1, 2, 4, 3])
+    # testReduce([1, 2, 4, 3])
+    # print(min(2, 1))
+    # testStack()
+    testQueue()
 
