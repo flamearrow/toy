@@ -24,6 +24,9 @@ def testStack():
         print(stack.pop())
 
 from queue import Queue
+import heapq
+
+
 def testQueue():
     q = Queue()
     q.put(1)
@@ -32,6 +35,33 @@ def testQueue():
     q.put(4)
     while not q.empty():
         print(q.get())
+
+from collections import deque
+def testdeque():
+    print("deque as queue")
+    queue = deque()
+    queue.append(1)
+    queue.append(2)
+    queue.append(3)
+    while queue:
+        print(queue[0])
+        print(queue.popleft())
+
+    print("deque as stack")
+    stack = deque()
+    stack.append(1)
+    stack.append(2)
+    stack.append(3)
+    while stack:
+        print(stack[0])  # peek
+        print(stack.pop())
+
+
+def testPriorityQueue():
+    heapQ = [23,4,2,11,4214]
+    heapq.heapify(heapQ)
+    while heapQ:
+        print(heapq.heappop(heapQ))
 
 if __name__ == '__main__':
     # l = [1, 2, 3, 4, 5]
@@ -44,5 +74,7 @@ if __name__ == '__main__':
     # testReduce([1, 2, 4, 3])
     # print(min(2, 1))
     # testStack()
-    testQueue()
+    # testQueue()
+    # testPriorityQueue()
+    testdeque()
 
