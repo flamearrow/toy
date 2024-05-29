@@ -72,7 +72,7 @@ class Robot:
     def getDir(self) -> str:
         return {0: "North", 1: "West", 2: "South", 3: "East"}[self.direction]
 
-t
+
 if __name__ == '__main__':
     r = Robot(2, 3)
     print(r.getPos())
