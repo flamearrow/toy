@@ -27,7 +27,7 @@ def solution(queries):
             ret.append(s.delete(num))
         elif op == 'GET_MEDIAN':
             ret.append(s.getMdian())
-    return ret
+    return "\n".join(map(lambda x: str(x), ret))
 
 
 
