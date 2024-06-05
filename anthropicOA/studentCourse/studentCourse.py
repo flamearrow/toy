@@ -201,7 +201,7 @@ if __name__ == '__main__':
 
     queries = [
         ["CREATE_COURSE_EXT", "CSE220", "Data Structures", "3", "Standard"],
-        ["CREATE_COURSE_EXT", "CSE300", "Operating Systems", "4"],
+        ["CREATE_COURSE_EXT", "CSE300", "Operating Systems", "4", "Standard"],
         ["CREATE_COURSE_EXT", "CSE330", "Computer Architecture", "3", "Pass/Fail"],
         ["REGISTER_FOR_COURSE", "st001", "CSE220"],
         ["REGISTER_FOR_COURSE", "st001", "CSE330"],

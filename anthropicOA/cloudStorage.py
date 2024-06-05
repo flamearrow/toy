@@ -1,5 +1,12 @@
 # cloudStorage
 # Instructions
+
+# 你的任务是实现一个简化版的cloud storage。根据以下级别的规范来设计你的数据库：
+# 每个加入的文件都是有自己的size的
+# 级别 1：内存数据库应支持基本操作，支持加入，删除，和读取size
+# 级别 2：内存数据库应支持多个用户，支持创建用户（每个用户有内存设置）支持用户加入和删除文件，同时支持level1的所有操作
+# 级别 3：内存数据‍‌‌‍‍‍‍‌‌‍‌‌‌‌‍‌‌‌‍‍库支持合并用户，并且可以删除之前的用户信息
+# 级别 4：内存数据库应支持backup 和restore用户的信息和相关文件。
 # Solving this task consists of several steps. Subsequent steps will open when the current step is correctly solved. You always have access to the data, such as descriptions and tests, for the current and all previous steps. Partial credit will be granted for each test passed, so press Submit often to run tests and receive partial credit for passed tests.
 #
 # Requirements
