@@ -6,7 +6,7 @@
         "address": {
             "street": "123 Main St",
             "city": "Anytown",
-            "zipCode": "12345"
+            "z0ipCode": "12345"
         },
         "phoneNumbers": [
             {
