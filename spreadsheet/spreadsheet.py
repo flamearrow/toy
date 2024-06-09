@@ -108,16 +108,16 @@ if __name__ == '__main__':
     ss.printParents()
 
 
-    # cellH = Cell(1, None, None)
-    # cellI = Cell(1, None, None)
-    # cellD2 = Cell(None, "H", "I")
-    #
-    # ss.setCellValue("H", cellH)
-    # ss.setCellValue("I", cellI)
-    # ss.setCellValue("D", cellD2)
+    cellH = Cell(1, None, None)
+    cellI = Cell(1, None, None)
+    cellD2 = Cell(None, "H", "I")
 
-    # print(ss.getCellValue("D"))
-    # print(ss.getCellValue("D"))
-    # print(ss.getCellValue("A"))
+    ss.setCellValue("H", cellH)
+    ss.setCellValue("I", cellI)
+    ss.setCellValue("D", cellD2)
+
+    print(ss.getCellValue("D"))
+    print(ss.getCellValue("D"))
+    print(ss.getCellValue("A"))
 
 
