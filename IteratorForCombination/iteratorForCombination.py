@@ -84,6 +84,69 @@ class CombinationIterator:
         return not self.exhausted
 
 
+# build all combinations upfront using backtrack
+class CombinationIterator2:
+
+    def __init__(self, characters: str, combinationLength: int):
+        # list of strings to return
+        self.buffer = []
+        def search(curPath, curIndex):
+            if len(curPath) == combinationLength:
+                self.buffer.append("".join(curPath))
+                return
+            else:
+                for i in range(curIndex, len(characters)):
+                    curPath.append(characters[i])
+                    search(curPath, i+1)
+                    curPath.pop()
+        search([], 0)
+        self.buffer.reverse()
+        for buffer in self.buffer:
+            print(buffer)
+
+    def next(self) -> str:
+        return self.buffer.pop()
+
+    def hasNext(self) -> bool:
+        return self.buffer
+
+
+class CombinationIterator3:
+
+    # use bitmap
+    # trick: bin(someNumber) -> return sstring represnetation of bitnary in 0b01010110
+    # str.count('1') counts number of 1s in the string
+    def __init__(self, characters: str, combinationLength: int):
+        self.bitMap = ((1 << combinationLength) - 1) << (len(characters) - combinationLength)
+        self.k = combinationLength
+        self.characters = characters
+        self.len = len(characters)
+        print(" initial bitmap", bin(self.bitMap))
+
+
+    def next(self) -> str:
+        print(" bitmap", bin(self.bitMap))
+
+        # retArr = [self.characters[i] for i in range(0, self.k+1) if ((1 << (self.k-i)) & self.bitMap) > 0]
+        retArr = []
+
+        for index, c in enumerate(self.characters):
+            bitMapShift = self.len - index - 1
+            if (1 << bitMapShift) & self.bitMap:
+                retArr.append(c)
+
+        self.bitMap -= 1
+        while bin(self.bitMap).count('1') != self.k:
+            self.bitMap -= 1
+
+        print(" updated bitmap", bin(self.bitMap))
+
+        return "".join(retArr)
+
+    def hasNext(self) -> bool:
+        return self.bitMap > 0
+
+
 if __name__ == '__main__':
     cb = CombinationIterator("bvwz", 2)
     while(cb.hasNext()):
