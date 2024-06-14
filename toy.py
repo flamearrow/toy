@@ -25,6 +25,7 @@ def reorganizeString(s: str) -> str:
             heapq.heappush(countItemList, (firstCount, firstChar))
     return "".join(ans)
 
-
 if __name__ == '__main__':
     reorganizeString("aaab")
+
+
