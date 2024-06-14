@@ -10,6 +10,9 @@ class TreeNode:
         else:
             self.right = None
 
+    def __str__(self):
+        return "{}".format(self.val)
+
     def set_left(self, left_value=None):
         self.left = TreeNode(root_value=left_value)
         return self.left

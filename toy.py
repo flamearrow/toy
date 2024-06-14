@@ -1,3 +1,4 @@
+import sys
 from collections import deque
 import heapq
 
@@ -26,6 +27,13 @@ def reorganizeString(s: str) -> str:
     return "".join(ans)
 
 if __name__ == '__main__':
-    reorganizeString("aaab")
+    # reorganizeString("aaab")
+    a = min(1,2,3)
+    print(a)
+
+    i = -sys.maxsize-1
+    j = 23
+    ret = max(i, j)
+    print(ret)
 
 
