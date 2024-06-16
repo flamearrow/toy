@@ -33,6 +33,7 @@
 # The next line contains  space-separated integers, .
 
 import heapq
+
 def cookies(k, A):
     # Write your code here
     heapq.heapify(A)

@@ -1,4 +1,8 @@
 # walk along the trie, when current word == "", reaaches the end node, check how many words termintaed here
+
+# Trie can do two things
+#  check if a prefix exists
+#  check if a string existt
 class Trie:
 
     def __init__(self):

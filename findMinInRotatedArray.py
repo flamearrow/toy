@@ -12,6 +12,25 @@ from typing import List
 
 
 class Solution:
+
+    # while left < right, compare mid and mid+1
+    def findMinBetter(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        left, right = 0, len(nums) - 1
+        while left < right:
+            if nums[left] < nums[right]:  # alreay sorted
+                return nums[left]
+            mid = (left + right) // 2
+            if nums[mid] > nums[mid + 1]:  # found boundary
+                return nums[mid + 1]
+            if nums[mid] < nums[right]:  # right sorted, must be in left part
+                right = mid  # include mid, because mid might be the smallest
+            else:  # left sorted, must be in right part
+                left = mid + 1
+        return left
+
+
     def findMin(self, nums: List[int]) -> int:
         if len(nums) == 1:
             return nums[0]
