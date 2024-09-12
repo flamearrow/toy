@@ -1,8 +1,12 @@
-# To make sure that groceries can always be delivered, Instacart tries to equally distribute delivery requests throughout the day by including an additional delivery fee during busy periods.
+# To make sure that groceries can always be delivered, Instacart tries to equally distribute delivery requests
+# throughout the day by including an additional delivery fee during busy periods.
 #
-# Each day is divided into several intervals that do not overlap and cover the whole day from 00:00 to 23:59. For each i the delivery fee in the intervals[i] equals fees[i].
+# Each day is divided into several intervals that do not overlap and cover the whole day from 00:00 to 23:59. For each
+# i the delivery fee in the intervals[i] equals fees[i].
 #
-# Given the list of delivery requests deliveries, your task is to check whether the delivery fee is directly correlated to the order volume in each interval i.e. the interval_fee / interval_deliveries value is constant for each interval throughout the day.
+# Given the list of delivery requests deliveries, your task is to check whether the delivery fee is directly correlated
+# to the order volume in each interval i.e. the interval_fee / interval_deliveries value is constant for each interval
+# throughout the day.
 #
 # Example
 #
