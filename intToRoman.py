@@ -22,4 +22,24 @@ class Solution:
 
         return ret
 
+    def intToRoman2(self, num: int) -> str:
+        vMap = {10: ['V', 'I'], 100: ['L', 'X'], 1000: ['D', 'C'], 10000: ['', 'M']}
+        ret = ""
+        curDividor = 10
+        while num > 0:
+            res = num % 10
+            if res < 4:
+                ret = vMap[curDividor][1] * res + ret  # add ones
+            elif res == 4:
+                ret = vMap[curDividor][1] + vMap[curDividor][0] + ret  # add one, five
+            elif res == 5:
+                ret = vMap[curDividor][0] + ret  # add five
+            elif res < 9:
+                ret = vMap[curDividor][0] + vMap[curDividor][1] * (res - 5) + ret  # add five, ones
+            else:
+                ret = vMap[curDividor][1] + vMap[curDividor * 10][1] + ret  # add one, ten
+            num = num // 10
+            curDividor *= 10
+        return ret
+
 

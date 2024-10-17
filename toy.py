@@ -26,14 +26,60 @@ def reorganizeString(s: str) -> str:
             heapq.heappush(countItemList, (firstCount, firstChar))
     return "".join(ans)
 
+def isAnagram(s: str, t: str) -> bool:
+    buffer = [0] * 26
+    for c in s:
+        buffer[ord(c) - ord('a')] += 1
+
+    for c in t:
+        buffer[ord(c) - ord('a')] -= 1
+
+    print(buffer)
+    return not any([i != 0 for i in buffer])
+
+def strStr(haystack: str, needle: str) -> int:
+    buffer = [0] * 26
+    for c in needle:
+        buffer[ord(c) - ord('a')] += 1
+
+    start, end = 0, 0  # [)
+    while end < len(haystack):
+        nextC = haystack[end]
+        if buffer[ord(nextC) - ord('c')] > 0:
+            buffer[ord(nextC) - ord('c')] -= 1
+            end += 1
+            print(f"now end: {end}, start: {start}")
+            if end - start == len(needle):
+                return True
+        else:
+            startC = haystack[start]
+            buffer[ord(startC) - ord('c')] += 1
+            start += 1
+            if start > end:
+                end = start
+    return False
+
+
 if __name__ == '__main__':
     # reorganizeString("aaab")
-    a = min(1,2,3)
-    print(a)
+    # a = min(1,2,3)
+    # print(a)
+    #
+    # i = -sys.maxsize-1
+    # j = 23
+    # ret = max(i, j)
+    # print(ret)
+    # toy = [1,2,3,4]
+    # print(isAnagram("anagram", "nagaram"))
+    # print(strStr("abcabfw", "abc"))
+    # l = [1,2,3]
+    # l.popleft()
 
-    i = -sys.maxsize-1
-    j = 23
-    ret = max(i, j)
-    print(ret)
-
-
+    # s = deque()
+    # s.append(1)
+    # s.append(2)
+    # s.append(3)
+    # s.append(4)
+    #
+    # print(s[0])
+    print("MLGB")

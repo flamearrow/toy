@@ -41,8 +41,27 @@ class Solution:
             if len(left) + len(mid) < k:
                 return doFind(right, k - len(left) - len(mid))
             return pivot
-
         return doFind(nums, k)
+
+
+    # use mid/left/right to group togehther then divide and conquer
+    # use k-length(right) to go to left part
+    def findKthLargest2(self, nums: List[int], k: int) -> int:
+        pivot = nums[0]
+        left = list(filter(lambda x: x < pivot, nums))
+        mid = list(filter(lambda x: x == pivot, nums))
+        right = list(filter(lambda x: x > pivot, nums))
+        if len(right) == k - 1:
+            return pivot
+        elif len(right) > k - 1:
+            return self.findKthLargest(right, k)
+        else:
+            leftOver = k - len(right)
+            if leftOver <= len(mid):
+                return mid[0]
+            else:
+                return self.findKthLargest(left, k - len(right) - len(mid))
+
 
 
 

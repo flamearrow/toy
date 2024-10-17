@@ -11,6 +11,18 @@ def fibo(n):
         buffer[n] = ret
         return ret
 
+# iteratively move from 3 to n, update the previous 2 buffers along the way
+def fibConstantBuffer(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    a, b = 0, 1
+    for i in range(2, n + 1):
+        a, b = b, a+b
+
+    return b
+
 
 
 # matrix expoentiation
@@ -56,12 +68,21 @@ def fiboMatrixExpoentiation(n):
 
     return transformedT[0][0] * F[0] + transformedT[0][1] * F[1] # the first row of T^(n-1)F
 
+from collections import defaultdict
 
 if __name__ == '__main__':
     # for i in range(20):
     #     print("{} - {}".format(i, fibo(i)))
 
-    for i in range(1, 40):
-        print(" fibo: ", i)
-        print(fibo(i))
-        print(fiboMatrixExpoentiation(i))
+    # for i in range(1, 40):
+    #     print(" fibo: ", i)
+    #     print(fibo(i))
+    #     print(fiboMatrixExpoentiation(i))
+
+    # v = 3
+    # s = (v * v-1) // 2
+    # print(v)
+    # print(s)
+
+    s = "mlgb"
+    print(s[0:1])

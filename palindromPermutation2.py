@@ -54,10 +54,42 @@ class Solution:
 
             return list(result)
 
+    def generatePalindromes2(self, s: str) -> List[str]:
+        cCount = {}
+        for c in s:
+            if c in cCount:
+                cCount[c] += 1
+            else:
+                cCount[c] = 1
+
+        center = ""
+        seenOdd = False
+        for c in cCount:
+            if cCount[c] % 2 == 1:
+                if seenOdd:
+                    return []
+                else:
+                    seenOdd = True
+                    center = c
+                    cCount[c] -= 1
+
+        ret = []
+
+        def buildPalindrome(cur):
+            if len(cur) == len(s):
+                ret.append(cur)
+            else:
+                for c in cCount:
+                    if cCount[c] > 0:
+                        cCount[c] -= 2
+                        buildPalindrome(c+cur+c)
+                        cCount[c] += 2
+
+        buildPalindrome(center)
+
+        return ret
+
 
 if __name__ == '__main__':
-    # s = Solution()
-    # print(s.generatePalindromes("aaabbccc"))
-    i = int('inf')
-    if 23 < i:
-        print("a")
+    s = Solution()
+    print(s.generatePalindromes2("aaab"))

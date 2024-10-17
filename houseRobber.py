@@ -29,3 +29,22 @@ class Solution:
                 maxWithI[i] = max(maxWithI[i], maxWithI[ending] + nums[i])
 
         return max(maxWithI[size-1], maxWithI[size-2])
+
+    def robOn(self, nums: List[int]) -> int:
+        dpW, dpWO = [0] * len(nums), [0] * len(nums)
+        dpW[0] = nums[0]
+        dpWO[0] = 0
+        for i in range(1, len(nums)):
+            dpW[i] = nums[i] + dpWO[i-1]
+            dpWO[i] = max(dpW[i - 1], dpWO[i - 1])
+        return max(dpW[len(nums) - 1], dpWO[len(nums) - 1])
+
+    def robOnO1(self, nums: List[int]) -> int:
+        prevW, prevWO = nums[0], 0
+
+        for i in range(1, len(nums)):
+            curW = prevWO + nums[i]
+            curWO = max(prevW, prevWO)
+            prevW, prevWO = curW, curWO
+
+        return max(prevW, prevWO)
