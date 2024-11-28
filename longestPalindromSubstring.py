@@ -39,6 +39,32 @@ class Solution:
         i, j = ans
         return s[i : j + 1]
 
+    def longestPalindrome2(self, s: str) -> str:
+        l = len(s)
+        dp = [[False]*l for _ in range(l)]
+        ret = ""
+        for i in range(l): # self and consecutive two are palindromes
+            dp[i][i] = True
+            ret = s[i]
+        for i in range(l-1):
+            if s[i] == s[i+1]:
+                dp[i][i+1] = True
+                ret = s[i:i+2]
+
+        # calculate dp[0][l-1], need to calcualte dp[1][l-2]
+        # start filling dp with reverse diagnals
+        #  dp[0][2], dp[1][3]...
+        #  dp[0][3], dp[2][4]...
+        for diff in range(2, l):
+            # make sure the last right bound x: (start + diff == l-1),  start=l-diff-1
+            for start in range(l-diff):
+                left, right = start, start+diff
+                if dp[left+1][right-1] and s[left] == s[right]:
+                    dp[left][right] = True
+                    ret = s[left:right+1]
+
+        return ret
+
 
 if __name__ == '__main__':
-    print(Solution())
+    print(Solution().longestPalindrome2("cbbd"))
