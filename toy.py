@@ -60,6 +60,28 @@ def strStr(haystack: str, needle: str) -> int:
     return False
 
 
+def arrComparisonToy():
+    arr1 = [1, 2, 3]
+    arr2 = [1, 2, 4]
+    arr3 = [1, 3, 4]
+
+    if arr1 <= arr2 <= arr3:
+        print("wow")
+
+    arr1S = [str(i) for i in arr1]
+    arr2S = [str(i) for i in arr2]
+    arr3S = [str(i) for i in arr3]
+
+    if arr1S <= arr2S <= arr3S:
+        print("wow")
+
+    if "05" < "12":
+        print("wor")
+
+    if "2013" < "2113":
+        print("ww")
+
+
 if __name__ == '__main__':
     # reorganizeString("aaab")
     # a = min(1,2,3)
@@ -82,4 +104,4 @@ if __name__ == '__main__':
     # s.append(4)
     #
     # print(s[0])
-    print("MLGB")
+    arrComparisonToy()
