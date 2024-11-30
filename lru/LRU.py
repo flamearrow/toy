@@ -154,3 +154,68 @@ class LRUCacheWithDoublylinkedList:
         else:  # not possible
             raise Exception("promote a node in a list without head")
 
+
+
+
+########
+# LRU with dummy head and tail and doubly linkedlist
+
+
+class Node2:
+    def __init__(self, key=None, value=None):
+        self.k = key
+        self.v = value
+        self.next = None
+        self.prev = None
+
+
+class LRUCache2:
+
+    def __init__(self, capacity: int):
+        self.kvMap = {}
+        self.capacity = capacity
+        self.head = Node2()
+        self.tail = Node2()
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def _remove(self, key):  # key must exist, return the removed Node with prev/next cleared
+        node = self.kvMap[key]
+        # self.kvMap.pop(key, None) # don't throw if key don't exist, no necessary
+        self.kvMap.pop(key)
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        node.next = None
+        node.prev = None
+        return node
+
+    def debug(self):
+        print("----")
+        cur = self.head.next
+        while cur != self.tail:
+            print(cur.k, cur.v)
+            cur = cur.next
+
+    def get(self, key: int) -> int:
+        if key in self.kvMap:
+            retNode = self._remove(key)
+            self.put(key, retNode.v)
+            return retNode.v
+        else:
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.kvMap:
+            node = self._remove(key)
+            node.v = value
+        else:  # add new key
+            if len(self.kvMap) == self.capacity:
+                keyToRemove = self.tail.prev.k
+                self._remove(keyToRemove)
+            node = Node(key, value)
+        self.kvMap[key] = node
+        # put node after head
+        node.next = self.head.next
+        node.prev = self.head
+        self.head.next = node
+        node.next.prev = node
