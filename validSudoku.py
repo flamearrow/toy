@@ -1,3 +1,5 @@
+from collections import List
+
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         def isRowValid():
@@ -41,3 +43,26 @@ class Solution:
             return True
 
         return isRowValid() and isColumnValid() and isBlockValid()
+
+    def isValidSudoku2(self, board: List[List[str]]) -> bool:
+        boxes = [set() for _ in range(9)]
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+
+        for i in range(9):
+            for j in range(9):
+                box = boxes[(i // 3) * 3 + j // 3]
+                row = rows[i]
+                col = cols[j]
+
+                curV = board[i][j]
+
+                if curV in box or curV in row or curV in col:
+                    return False
+
+                if curV != ".":
+                    box.add(curV)
+                    row.add(curV)
+                    col.add(curV)
+
+        return True

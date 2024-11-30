@@ -104,4 +104,12 @@ if __name__ == '__main__':
     # s.append(4)
     #
     # print(s[0])
-    arrComparisonToy()
+    # arrComparisonToy()
+    v = set()
+    v.add(5)
+    v.remove(5)
+    v.discard(5)
+
+    m = {1: 2}
+    m.pop(1)
+    m.pop(1, None)
