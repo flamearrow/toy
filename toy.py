@@ -82,6 +82,15 @@ def arrComparisonToy():
         print("ww")
 
 
+def dequeToy():
+    de = deque()
+    de.append(1)
+    de.append(2)
+    de.append(3)
+
+    de.appendleft(0)
+    print(de)
+
 if __name__ == '__main__':
     # reorganizeString("aaab")
     # a = min(1,2,3)
@@ -105,11 +114,12 @@ if __name__ == '__main__':
     #
     # print(s[0])
     # arrComparisonToy()
-    v = set()
-    v.add(5)
-    v.remove(5)
-    v.discard(5)
-
-    m = {1: 2}
-    m.pop(1)
-    m.pop(1, None)
+    # v = set()
+    # v.add(5)
+    # v.remove(5)
+    # v.discard(5)
+    #
+    # m = {1: 2}
+    # m.pop(1)
+    # m.pop(1, None)
+    dequeToy()
