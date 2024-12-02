@@ -32,6 +32,27 @@ class Solution:
 
         return list(map(lambda x: x[1], sorted(lvlNodeDict.items(), key=lambda x: x[0])))
 
+    def verticalOrder2(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        colRowsMap = {}  # {col: [nodesOrderedByRow]}
+        queue = deque()
+        queue.append((root, 0))  # [node, col]
+        while queue:
+            nextNode, nextC = queue.popleft()
+            if nextC not in colRowsMap:
+                colRowsMap[nextC] = []
+            colRowsMap[nextC].append(nextNode.val)
+
+            if nextNode.left:
+                queue.append((nextNode.left, nextC - 1))
+            if nextNode.right:
+                queue.append((nextNode.right, nextC + 1))
+        ret = []
+        for key in sorted(colRowsMap.keys()):
+            ret.append(colRowsMap[key])
+        return ret
+
 
 if __name__ == '__main__':
     root = TreeNode(3)
