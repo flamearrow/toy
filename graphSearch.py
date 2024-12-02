@@ -85,7 +85,8 @@ def floyedWarshall(edges):
     for fromNode in range(n):
         for toNode in range(n):
             for throughNode in range(n):
-                ret[fromNode][toNode] = min(ret[fromNode][toNode], ret[fromNode][throughNode] + ret[throughNode][toNode])
+                ret[fromNode][toNode] = min(ret[fromNode][toNode],
+                                            ret[fromNode][throughNode] + ret[throughNode][toNode])
                 # no neeed for this, as later toNode and fromNode will also be run
                 # ret[toNode][fromNode] = ret[fromNode][toNode]
 
@@ -93,8 +94,62 @@ def floyedWarshall(edges):
         print(row)
 
 
+# aka topological sort
+# pars are {"a": ["b", "c", "d"]} meaming a appears before bcd
+# use a queue to save all nodes without incoming edges
+#  pop one out first, visit it, remove all nodes coming from it, enqueue if the new node has no incoming edge
+from collections import deque
+
+
+def kanh(pairs):
+    graph = {}  # node: [neighbours]
+    incomingCount = {}  # node: count
+
+    for node, neighbours in pairs.items():
+        if node not in graph:
+            graph[node] = neighbours
+        else:
+            graph[node] += neighbours
+
+        if node not in incomingCount:
+            incomingCount[node] = 0
+
+        for n in neighbours:
+            if n not in graph:  # Ensure all nodes are added to the graph
+                graph[n] = []
+            if n not in incomingCount:
+                incomingCount[n] = 1
+            else:
+                incomingCount[n] += 1
+
+    queue = deque([node for node, count in incomingCount.items() if count == 0])
+
+    ret = []
+    while queue:
+        nextNode = queue.popleft()
+        ret.append(nextNode)
+
+        # nextNode's neighbours need to decrement incoming by one
+        for n in graph[nextNode]:
+            incomingCount[n] -= 1
+            if incomingCount[n] == 0:
+                queue.append(n)
+
+    if len(ret) < len(incomingCount):
+        raise ValueError("has cycle")
+    return ret
 
 
 if __name__ == '__main__':
     # dij(0, [[0, 3, 7], [2, 4, 1], [0, 1, 5], [2, 3, 10], [1, 3, 6], [1, 2, 1]])
-    floyedWarshall([[0, 3, 7], [2, 4, 1], [0, 1, 5], [2, 3, 10], [1, 3, 6], [1, 2, 1]])
+    # floyedWarshall([[0, 3, 7], [2, 4, 1], [0, 1, 5], [2, 3, 10], [1, 3, 6], [1, 2, 1]])
+    print(kanh({
+        "a": ["b", "c", "d"],
+        "b": ["e"],
+        "c": ["f"],
+        "d": [],
+        "e": ["g"],
+        "f": ["g"],
+        "g": []
+    }))
+

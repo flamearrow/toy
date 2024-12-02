@@ -1,3 +1,4 @@
+import sre_constants
 import sys
 from collections import deque
 import heapq
@@ -122,4 +123,8 @@ if __name__ == '__main__':
     # m = {1: 2}
     # m.pop(1)
     # m.pop(1, None)
+    # a = set()
+    # b = a.c
     dequeToy()
+    s = "123"
+
