@@ -20,31 +20,31 @@
 #
 # Input: nums = [9], target = 3
 # Output: 0
+
+from typing import List
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
-        # ret = 0
-        # def search(curIndex, curValue):
-        #     nonlocal ret
-        #     if curValue > target:
-        #         return
-        #     elif curValue == target:
-        #         ret += 1
-        #         return
-        #     else:
-        #         for i in range(curIndex, len(nums)):
-        #             search(curIndex, curValue + nums[i])
-        # search(0, 0)
-
-        # return ret
         dp = [0] * (target + 1)
-        nums = sorted(nums)
-        for num in nums:
+        nums = sorted(nums) # can avoid sort and loop from 0
+        for num in nums: # can avoid this and only set dp[0] to 1
             if num <= target:
                 dp[num] = 1
 
         for i in range(nums[0], target + 1):
             for num in nums:
                 if i - num >= 0 and dp[i - num] > 0:
+                    dp[i] += dp[i - num]
+
+        return dp[target]
+
+
+    def combinationSum4Another(self, nums: List[int], target: int) -> int:
+        dp = [0] * (target + 1)
+        dp[0] = 1
+
+        for i in range(0, target + 1):
+            for num in nums:
+                if i - num >= 0:
                     dp[i] += dp[i - num]
 
         return dp[target]

@@ -51,6 +51,34 @@ class Solution:
             ret = ret[1:]
         return ret
 
+    # use stack use stack use stack
+    def removeKdigitsTake2(self, num: str, k: int) -> str:
+        s = deque()
+
+        for c in num:
+            if k == 0:
+                s.append(c)
+            elif not s:
+                s.append(c)
+            else:
+                while s and c < s[-1] and k > 0:
+                    s.pop()
+                    k -= 1
+                s.append(c)
+
+        # now s is non decreasing, remove tail if k>0
+        rst = "".join(s)[0:len(s) - k]
+        if not rst:
+            return "0"
+        else:
+            cur = 0
+            while cur < len(rst) and rst[cur] == "0":
+                cur += 1
+            if cur == len(rst):
+                return "0"
+            else:
+                return rst[cur:]
+
 
 
 
