@@ -93,38 +93,7 @@ def dequeToy():
     print(de)
 
 if __name__ == '__main__':
-    # reorganizeString("aaab")
-    # a = min(1,2,3)
-    # print(a)
-    #
-    # i = -sys.maxsize-1
-    # j = 23
-    # ret = max(i, j)
-    # print(ret)
-    # toy = [1,2,3,4]
-    # print(isAnagram("anagram", "nagaram"))
-    # print(strStr("abcabfw", "abc"))
-    # l = [1,2,3]
-    # l.popleft()
-
-    # s = deque()
-    # s.append(1)
-    # s.append(2)
-    # s.append(3)
-    # s.append(4)
-    #
-    # print(s[0])
-    # arrComparisonToy()
-    # v = set()
-    # v.add(5)
-    # v.remove(5)
-    # v.discard(5)
-    #
-    # m = {1: 2}
-    # m.pop(1)
-    # m.pop(1, None)
-    # a = set()
-    # b = a.c
-    dequeToy()
-    s = "123"
+    x = 3
+    s = "3+3*3"
+    print(s.split(f"{x}"))
 
