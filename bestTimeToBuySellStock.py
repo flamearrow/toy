@@ -24,6 +24,8 @@
 # Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
 
 from typing import List
+from collections import deque
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         bought = -1 # didn't really buy, only made the transtion when bought - price
@@ -37,4 +39,20 @@ class Solution:
                     bought = price
                 else:
                     bought = price
+        return ret
+
+    def maxProfitWithStack(self, prices: List[int]) -> int:
+        stack = deque()
+        ret = 0
+        for p in prices:
+            if not stack:
+                stack.append(p)
+            else:
+                if stack[-1] <= p:
+                    buyPrice = stack.pop()
+                    ret += p - buyPrice
+                while stack and stack[-1] <= p:
+                    stack.pop()
+                stack.append(p)
+        # now stack is reversely sorted, no more profit can be made
         return ret
