@@ -92,8 +92,13 @@ def dequeToy():
     de.appendleft(0)
     print(de)
 
+
+def listToy():
+    l = [1, 2, 3, 4]
+    print(l.count(1))
+
+
 if __name__ == '__main__':
-    x = 3
-    s = "3+3*3"
-    print(s.split(f"{x}"))
+    listToy()
+
 
