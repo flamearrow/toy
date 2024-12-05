@@ -49,6 +49,23 @@ class Solution:
         else:
             return -1
 
+    # like kadane's algorithm to calculate the max subarray, keep a rumming curTank, if it drops below 0,
+    # start from next position
+
+    # check there is an answer upfront by checking their sum
+    def canCompleteCircuit2(self, gas: List[int], cost: List[int]) -> int:
+        if sum(gas) < sum(cost):
+            return -1
+        ret = 0
+        curTank = 0
+        for i in range(len(gas)):
+            curTank += gas[i] - cost[i]
+            if curTank < 0:
+                ret = i + 1
+                curTank = 0
+
+        return ret
+
 
 if __name__ == '__main__':
     print(Solution())
