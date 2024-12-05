@@ -60,6 +60,7 @@ class Solution:
                 return x
 
         # when union two nodes, udpate their ancestors' parent
+        # set smaller rank node's parent to larger rank node
         def union(u, v):
             pu = findParent(u)
             pv = findParent(v)
@@ -71,7 +72,7 @@ class Solution:
                 if ranku == rankv:
                     parents[pv] = pu
                     ranks[pu] += 1
-                elif ranku > rankv:
+                elif ranku > rankv: # set smaller rank's parent to larger rank
                     parents[pv] = pu
                 else:
                     parents[pu] = pv
